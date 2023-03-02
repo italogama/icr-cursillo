@@ -11,7 +11,7 @@ type SheetForm = {
   streetNumber: string;
   neighborhood: string;
   city: string;
-  residentalPhone: string;
+  residentialPhone: string;
   comercialPhone: string;
   cellPhone: string;
   cellPhone2: string;
@@ -26,9 +26,14 @@ type SheetForm = {
   alergyMedication: string;
   alergyMedicationSpecification: string;
   signatureDate: string;
-  signature: string;
+  signatureUrl: string;
   guestName: string;
   guestPhone: string;
+  guestCursillo: string;
+  guestReason: string;
+  guestAgreed: string;
+  guestFee: string;
+  guestDateDeadline: string;
   cursillo: string;
 };
 
@@ -62,7 +67,7 @@ export default async function handler(
 
     const response = await sheet.spreadsheets.values.append({
       spreadsheetId: process.env.SPREADSHEET_ID,
-      range: 'A2:AB2',
+      range: 'A2:AG2',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: [
@@ -76,7 +81,7 @@ export default async function handler(
             body.streetNumber,
             body.neighborhood,
             body.city,
-            body.residentalPhone,
+            body.residentialPhone,
             body.comercialPhone,
             body.cellPhone,
             body.cellPhone2,
@@ -91,9 +96,14 @@ export default async function handler(
             body.alergyMedication,
             body.alergyMedicationSpecification,
             body.signatureDate,
-            body.signature,
+            body.signatureUrl,
             body.guestName,
             body.guestPhone,
+            body.guestCursillo,
+            body.guestReason,
+            body.guestAgreed,
+            body.guestFee,
+            body.guestDateDeadline,
             body.cursillo,
           ],
         ],

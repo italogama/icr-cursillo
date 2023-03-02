@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
-  experimental:{
+  experimental: {
     appDir: true,
-  }
-}
+  },
+  port: 3010,
+};

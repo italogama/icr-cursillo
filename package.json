@@ -6,17 +6,18 @@
     "start": "next start"
   },
   "dependencies": {
-    "firebase": "^9.17.1",
     "googleapis": "^112.0.0",
-    "next": "latest",
+    "mercadopago": "^1.5.15",
+    "next": "^13.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-signature-canvas": "^1.0.6",
     "sweetalert2": "^11.7.3",
-    "tailwind-scrollbar-hide": "^1.1.7",
-    "uuid": "^9.0.0"
+    "tailwind-scrollbar-hide": "^1.1.7"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.9",
+    "@types/mercadopago": "^1.5.8",
     "@types/node": "18.11.3",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",

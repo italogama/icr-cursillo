@@ -3,6 +3,7 @@ import { google } from 'googleapis';
 
 type SheetForm = {
   fullName: string;
+  email: string;
   birthDate: string;
   civilStatus: string;
   cpf: string;
@@ -25,16 +26,12 @@ type SheetForm = {
   healthIssuesSpecification: string;
   alergyMedication: string;
   alergyMedicationSpecification: string;
-  signatureDate: string;
-  signatureUrl: string;
+  confirmationDate: string;
+  confirmationCheck: string;
   guestName: string;
   guestPhone: string;
   guestCursillo: string;
-  guestReason: string;
-  guestAgreed: string;
-  guestFee: string;
-  guestDateDeadline: string;
-  cursillo: string;
+  payment: string;
 };
 
 export default async function handler(
@@ -67,12 +64,13 @@ export default async function handler(
 
     const response = await sheet.spreadsheets.values.append({
       spreadsheetId: process.env.SPREADSHEET_ID,
-      range: 'A2:AG2',
+      range: 'A2:AD2',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: [
           [
             body.fullName,
+            body.email,
             body.birthDate,
             body.civilStatus,
             body.cpf,
@@ -95,16 +93,12 @@ export default async function handler(
             body.healthIssuesSpecification,
             body.alergyMedication,
             body.alergyMedicationSpecification,
-            body.signatureDate,
-            body.signatureUrl,
+            body.confirmationDate,
+            body.confirmationCheck,
             body.guestName,
             body.guestPhone,
             body.guestCursillo,
-            body.guestReason,
-            body.guestAgreed,
-            body.guestFee,
-            body.guestDateDeadline,
-            body.cursillo,
+            body.payment,
           ],
         ],
       },

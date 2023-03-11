@@ -24,7 +24,7 @@ export default async function handler(
       {
         title: 'Cursilho ICR',
         description: 'Cursilho de Cristandade da Igreja Cristã em Recife',
-        unit_price: 3,
+        unit_price: 315,
         quantity: 1,
       },
     ],

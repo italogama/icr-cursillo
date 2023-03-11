@@ -7,6 +7,7 @@ import BaseLayout from '../../app/baseLayout';
 
 function Subscribe() {
   const [fullName, setFullName] = useState('');
+  const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [birthDate, setBirthDate] = useState('');
   const [civilStatus, setCivilStatus] = useState('');
@@ -46,6 +47,7 @@ function Subscribe() {
 
   const resetFields = () => {
     setFullName('');
+    setNickname('');
     setBirthDate('');
     setCivilStatus('');
     setCpf('');
@@ -104,6 +106,7 @@ function Subscribe() {
 
       const form = {
         fullName,
+        nickname,
         email,
         birthDate,
         civilStatus,
@@ -297,6 +300,22 @@ function Subscribe() {
               placeholder="Fulano da Silva Santos"
               onChange={e => setFullName(e.target.value)}
               value={fullName}
+              required
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-wrap -mx-3">
+          <div className="w-full px-3">
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+              Apelido (Como gosta de ser chamado?)
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              type="text"
+              placeholder="Apelido"
+              onChange={e => setNickname(e.target.value)}
+              value={nickname}
               required
             />
           </div>

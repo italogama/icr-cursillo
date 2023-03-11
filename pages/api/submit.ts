@@ -3,6 +3,7 @@ import { google } from 'googleapis';
 
 type SheetForm = {
   fullName: string;
+  nickname: string;
   email: string;
   birthDate: string;
   civilStatus: string;
@@ -70,6 +71,7 @@ export default async function handler(
         values: [
           [
             body.fullName,
+            body.nickname,
             body.email,
             body.birthDate,
             body.civilStatus,

@@ -38,7 +38,7 @@ export default async function handler(
       range: 'Funçoes!A1',
       requestBody: {
         values: [
-          [`=ÍNDICE(Dados!AD:AD; CORRESP("${body.email}"; Dados!B:B; 0))`],
+          [`=ÍNDICE(Dados!AE:AE; CORRESP("${body.email}"; Dados!C:C; 0))`],
         ],
       },
       includeValuesInResponse: true,

@@ -35,8 +35,7 @@ export default function Equipe() {
           confirmButtonText: 'Ok',
         });
       } else {
-        const url = await response.json();
-        window.location.replace(url.data);
+        window.location.replace(data.data);
         setIsLoading(false);
       }
     } catch (error) {

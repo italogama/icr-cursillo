@@ -19,23 +19,66 @@ export default async function handler(
     access_token: process.env.MERCADO_PAGO_ACCESS_TOKEN,
   });
 
-  let preference = {
-    items: [
-      {
-        title: 'Cursilho ICR - EQUIPE',
-        description:
-          'Pagamento da Equipe do Cursilho de Cristandade da Igreja Cristã em Recife',
-        unit_price: 270,
-        quantity: 1,
-      },
-    ],
-    payer: {
-      name: body.name,
-    },
+  const getReference = () => {
+    console.log(req.body);
+    if (req.body.paymentType === 1) {
+      let preference = {
+        items: [
+          {
+            title: 'Cursilho ICR - EQUIPE - Taxa + Camisa',
+            description:
+              'Pagamento da Equipe do Cursilho de Cristandade da Igreja Cristã em Recife',
+            unit_price: 310,
+            quantity: 1,
+          },
+        ],
+        payer: {
+          name: body.name,
+        },
+      };
+      return preference;
+    }
+    if (req.body.paymentType === 2) {
+      let preference = {
+        items: [
+          {
+            title: 'Cursilho ICR - EQUIPE - Apenas Taxa',
+            description:
+              'Pagamento da Equipe do Cursilho de Cristandade da Igreja Cristã em Recife',
+            unit_price: 270,
+            quantity: 1,
+          },
+        ],
+        payer: {
+          name: body.name,
+        },
+      };
+      return preference;
+    }
+
+    if (req.body.paymentType === 3) {
+      let preference = {
+        items: [
+          {
+            title: 'Cursilho ICR - EQUIPE - Apenas Camisa',
+            description:
+              'Pagamento da Equipe do Cursilho de Cristandade da Igreja Cristã em Recife',
+            unit_price: 40,
+            quantity: 1,
+          },
+        ],
+        payer: {
+          name: body.name,
+        },
+      };
+      return preference;
+    }
   };
 
+  const reference = getReference();
+
   mercadopago.preferences
-    .create(preference)
+    .create(reference)
     .then(function (response: any) {
       return res.status(200).json({ data: response.body.init_point });
     })

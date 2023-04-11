@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 
 export default function Equipe() {
   const [name, setName] = useState('');
+  const [paymentType, setPaymentType] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -21,7 +22,7 @@ export default function Equipe() {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name }),
+        body: JSON.stringify({ name, paymentType }),
       });
 
       const data = await response.json();
@@ -91,6 +92,21 @@ export default function Equipe() {
                 onChange={e => setName(e.target.value)}
                 value={name}
               />
+            </div>
+            <div className="w-full px-3">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                Tipo de pagamento
+              </label>
+              <select
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                name="select"
+                onChange={e => setPaymentType(Number(e.target.value))}
+                value={paymentType}
+              >
+                <option value={1}>Taxa + Camisa R$: 310,00</option>
+                <option value={2}>Apenas Taxa R$: 270,00</option>
+                <option value={3}>Apenas Camisa R$: 40,00</option>
+              </select>
             </div>
           </div>
           <div className="flex flex-row justify-center">

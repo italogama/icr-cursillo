@@ -6,7 +6,7 @@ import Link from 'next/link';
 import BaseLayout from './baseLayout';
 import classNames from 'classnames';
 
-const HomeMac = () => {
+const Home = () => {
   const env = process.env.CURSILHO_ENV;
 
   return (
@@ -93,8 +93,4 @@ const HomeMac = () => {
   );
 };
 
-export const render = () => {
-  return <HomeMac />;
-};
-
-export default render;
+export default Home;

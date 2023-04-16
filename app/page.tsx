@@ -1,13 +1,14 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
-import { v4 } from 'uuid';
 import Image from 'next/image';
-import Swal from 'sweetalert2';
 import logoCursilho from '../public/images/logoCursilho.png';
 import Link from 'next/link';
 import BaseLayout from './baseLayout';
+import classNames from 'classnames';
 
-function Home() {
+const HomeMac = () => {
+  const env = process.env.CURSILHO_ENV;
+
   return (
     <>
       <BaseLayout>
@@ -23,8 +24,8 @@ function Home() {
             }}
           />
 
-          <label className="block uppercase tracking-wide text-gray-900 text-3xl mt-2 text-center">
-            Cursilho Masculino
+          <label className="block uppercase font-roboto tracking-wide text-gray-900 text-3xl mt-2 text-center">
+            {env === 'MASC' ? 'Cursilho Masculino' : 'Cursilho Feminino'}
           </label>
 
           <Image
@@ -40,20 +41,21 @@ function Home() {
         </div>
 
         <article className="prose lg:prose-lg bg-white rounded-md p-2">
-          <p className="text-black font-thin">
-            Caros irmãos e irmãs em Cristo, É com grande alegria que anunciamos
-            mais uma edição do Cursilho de Cristandade realizado pela Igreja
-            Cristã em Recife. Uma experiência espiritual que tem transformado a
-            vida de muitos cristãos ao redor do mundo. <br></br>O Cursilho é um
-            movimento que nasceu na Espanha, em meados do século XX, e se
-            espalhou por diversos países, incluindo o Brasil. Ele tem como
-            objetivo proporcionar um encontro pessoal com Jesus Cristo e
-            fortalecer a fé dos participantes. Esse movimento é aberto a
-            cristãos de todas as denominações, e por isso pode ser uma
+          <p className="text-black font-thin text-sm indent-8">
+            {env === 'MASC' ? 'Caros irmãos' : 'Caras irmãs'} em Cristo, é com
+            grande alegria que anunciamos mais uma edição do Cursilho de
+            Cristandade realizado pela Igreja Cristã em Recife. Uma experiência
+            espiritual que tem transformado a vida de muitos cristãos ao redor
+            do mundo. O Cursilho é um movimento que nasceu na Espanha, em meados
+            do século XX, e se espalhou por diversos países, incluindo o Brasil.
+            Ele tem como objetivo proporcionar um encontro pessoal com Jesus
+            Cristo e fortalecer a fé dos participantes. Esse movimento é aberto
+            a cristãos de todas as denominações, e por isso pode ser uma
             oportunidade única para conhecermos irmãos e irmãs de outras igrejas
             e enriquecermos nossa fé com as diferentes experiências e visões de
             mundo.<br></br>
-            Por isso, queridos irmãos e irmãs, convidamos a TODOS os homens a
+            Por isso, queridos irmãos e irmãs, convidamos{' '}
+            {env === 'MASC' ? 'TODOS os homens' : 'TODAS as mulheres'} a
             participarem dessa experiência transformadora. Que possamos juntos
             fortalecer nossa fé e nossa comunhão em Cristo.
             <br></br>
@@ -63,18 +65,24 @@ function Home() {
 
         <div className="flex flex-col mt-4 justify-center gap-4 text-center mb-4 items-center">
           <Link
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full text-center w-52"
+            className={classNames(
+              'text-white font-bold py-2 px-4 rounded-full text-center w-52 text-sm',
+              {
+                'bg-blue-500 hover:bg-blue-700': env === 'MASC',
+                'bg-pink-500 hover:bg-pink-700': env === 'FEM',
+              },
+            )}
             href="/subscribe"
           >
             Realizar inscrição
           </Link>
 
-          <p className="text-center font-bold">
+          <p className="text-center font-bold text-sm">
             Já realizou a sua inscrição antes <br></br> mas não realizou o
             pagamento?
           </p>
           <Link
-            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full text-center w-52"
+            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full text-center w-52 text-sm"
             href="/payment"
           >
             Realizar Pagamento
@@ -83,6 +91,10 @@ function Home() {
       </BaseLayout>
     </>
   );
-}
+};
 
-export default Home;
+export const render = () => {
+  return <HomeMac />;
+};
+
+export default render;

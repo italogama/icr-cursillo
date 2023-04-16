@@ -27,7 +27,7 @@ export default function BaseLayout({
       </div>
       <div className="flex w-full lg:w-1/2 justify-center items-center bg-black space-y-8">
         <div className="w-full px-4 md:px-32 lg:px-24 py-10 h-screen">
-          <div className="w-full max-w-lg h-full overflow-y-scroll scrollbar-hide px-3 bg-gray-400 border-gray-400 rounded-lg pt-5">
+          <div className="w-full max-w-lg h-full overflow-y-scroll scrollbar-hide px-3 bg-fuchsia-200 border-gray-400 rounded-lg pt-5">
             {children}
           </div>
         </div>

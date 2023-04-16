@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Swal from 'sweetalert2';
 import logoCursilho from '../../public/images/logoCursilho.png';
 import BaseLayout from '../../app/baseLayout';
+import classNames from 'classnames';
 
 function Subscribe() {
   const [fullName, setFullName] = useState('');
@@ -44,6 +45,9 @@ function Subscribe() {
   const [payment, setPayment] = useState('Não');
 
   const [isLoading, setIsLoading] = useState(false);
+  const env = process.env.CURSILHO_ENV;
+  const init = process.env.CURSILHO_INIT;
+  const end = process.env.CURSILHO_END;
 
   const resetFields = () => {
     setFullName('');
@@ -165,9 +169,10 @@ function Subscribe() {
           text: 'Desejar ser redirecionado para realizar o pagamento? Se você cancelar, você deverá realizar o pagamento até 5 dias ANTES do cursilho.',
           icon: 'info',
           showCancelButton: true,
-          confirmButtonColor: '#3085d6',
+          confirmButtonColor: '#d946ef',
           cancelButtonColor: '#d33',
           confirmButtonText: 'Realizar pagamento',
+          cancelButtonText: 'Cancelar',
         }).then(async result => {
           if (result.isConfirmed) {
             const checkout = await fetch('/api/mercadopago', {
@@ -297,7 +302,11 @@ function Subscribe() {
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               type="text"
-              placeholder="Fulano da Silva Santos"
+              placeholder={
+                env === 'MASC'
+                  ? 'Fulano da Silva Santos'
+                  : 'Fulana da Silva Santos'
+              }
               onChange={e => setFullName(e.target.value)}
               value={fullName}
               required
@@ -308,7 +317,9 @@ function Subscribe() {
         <div className="flex flex-wrap -mx-3">
           <div className="w-full px-3">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-              Apelido (Como gosta de ser chamado?)
+              {env === 'MASC'
+                ? 'Como deseja ser chamado?'
+                : 'Como deseja ser chamada?'}
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -329,7 +340,9 @@ function Subscribe() {
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               type="email"
-              placeholder="fulaninho@gmail.com"
+              placeholder={
+                env === 'MASC' ? 'fulaninho@gmail.com' : 'fulaninha@gmail.com'
+              }
               onChange={e => setEmail(e.target.value)}
               value={email}
               required
@@ -343,9 +356,8 @@ function Subscribe() {
               Data de Nascimento
             </label>
             <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-12"
               type="date"
-              placeholder="Fulano da Silva Santos"
               onChange={e => setBirthDate(e.target.value)}
               value={birthDate}
               required
@@ -758,11 +770,11 @@ function Subscribe() {
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold m-2">
               Eu, {fullName ? fullName : 'Seu nome aqui'} reafirmo todos os
               dados por mim citados acima, responsabilizando-me pela ida ao
-              Movimento Cursilhista nos dias: 13/04/2022 a 16/04/2022, e
-              procurar a Secretaria do Cursilho a fim de confirmar minha
-              presença, efetuando o pagamento da taxa no valor de R$300 reais no
-              final deste cadastro, ou na entrega deste formulário preenchido
-              50% do valor e o restante em até 5(cinco) dias antes do Cursilho.
+              Movimento Cursilhista nos dias: {init} a{end}, e procurar a
+              Secretaria do Cursilho a fim de confirmar minha presença,
+              efetuando o pagamento da taxa no valor de R$300 reais no final
+              deste cadastro, ou na entrega deste formulário preenchido 50% do
+              valor e o restante em até 5(cinco) dias antes do Cursilho.
             </label>
             <div className="flex flex-row gap-2 justify-end mb-4">
               <input
@@ -798,7 +810,11 @@ function Subscribe() {
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               type="text"
-              placeholder="Fulano da Silva Santos"
+              placeholder={
+                env === 'MASC'
+                  ? 'Fulano da Silva Santos'
+                  : 'Fulana da Silva Santos'
+              }
               value={guestName}
               onChange={e => setGuestName(e.target.value)}
               required
@@ -850,7 +866,13 @@ function Subscribe() {
 
         <div className="flex justify-center mb-5">
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+            className={classNames(
+              'text-white font-bold py-2 px-4 rounded-full text-sm',
+              {
+                'bg-blue-500 hover:bg-blue-700': env === 'MASC',
+                'bg-pink-500 hover:bg-pink-700': env === 'FEM',
+              },
+            )}
             type="submit"
             disabled={isLoading}
           >

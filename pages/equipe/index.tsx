@@ -9,6 +9,7 @@ export default function Equipe() {
   const [name, setName] = useState('');
   const [paymentType, setPaymentType] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  const env = process.env.CURSILHO_ENV;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,7 +48,9 @@ export default function Equipe() {
     <BaseLayout>
       <article className="prose lg:prose-lg">
         <div className="flex flex-row">
-          <h1 className="text-center pt-10">Cursilho Masculino</h1>
+          <h1 className="text-center pt-10">
+            {env === 'MASC' ? 'Cursilho Masculino' : 'Cursilho Feminino'}
+          </h1>
           <Image
             alt="Vercel logo"
             src={logoCursilho}

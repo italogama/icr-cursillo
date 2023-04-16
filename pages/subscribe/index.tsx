@@ -45,7 +45,7 @@ function Subscribe() {
   const [payment, setPayment] = useState('Não');
 
   const [isLoading, setIsLoading] = useState(false);
-  const env = process.env.CURSILHO_ENV;
+  const env = process.env.NEXT_PUBLIC_CURSILHO_ENV;
   const init = process.env.NEXT_PUBLIC_CURSILHO_INIT;
   const end = process.env.NEXT_PUBLIC_CURSILHO_END;
 

@@ -70,8 +70,9 @@ export default function Equipe() {
               </label>
               <label className="block tracking-wide text-gray-700 text-sm font-bold mb-2">
                 Se você está nessa página, pressupomos que você faz parte da
-                Equipe do Cursilho Masculino de 2023 da Igreja Cristã em Recife,
-                e está aqui para realizar o seu pagamento.
+                Equipe do Cursilho {env === 'MASC' ? 'Masculino' : 'Feminino'}{' '}
+                de 2023 da Igreja Cristã em Recife, e está aqui para realizar o
+                seu pagamento.
               </label>
               <label className="block tracking-wide text-red-500 text-sm font-bold mb-2 text-center">
                 SÓ PROSSIGA SE VOCÊ FAZ PARTE DA EQUIPE
@@ -114,7 +115,7 @@ export default function Equipe() {
           </div>
           <div className="flex flex-row justify-center">
             <button
-              className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-4 rounded-full"
+              className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-4 rounded-full text-sm"
               type="submit"
               disabled={isLoading}
             >
@@ -148,7 +149,7 @@ export default function Equipe() {
 
       <div className="flex flex-col mt-4 justify-center gap-4 text-center mb-4 items-center">
         <Link
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full text-center"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full text-center text-sm"
           href="/"
         >
           Voltar para a página inicial

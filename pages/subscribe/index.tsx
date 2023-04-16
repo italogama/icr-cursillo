@@ -187,6 +187,17 @@ function Subscribe() {
             window.location.replace(url.data);
           } else {
             resetFields();
+            Swal.fire({
+              title: 'Sucesso!!',
+              text: 'Seu cadastro foi realizado com sucesso!',
+              icon: 'success',
+              confirmButtonText: 'Retornar para a página inicial',
+            }).then(result => {
+              if (result.value) {
+                const homepageUrl = `${window.location.origin}/`; // Replace with your desired path
+                window.location.href = homepageUrl;
+              }
+            });
           }
         });
       }

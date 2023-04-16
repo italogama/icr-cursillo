@@ -4,10 +4,12 @@ import logoCursilho from '../../public/images/logoCursilho.png';
 import Image from 'next/image';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
+import classNames from 'classnames';
 
 export default function Success() {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const env = process.env.CURSILHO_ENV;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -63,7 +65,9 @@ export default function Success() {
     <BaseLayout>
       <article className="prose lg:prose-lg">
         <div className="flex flex-row">
-          <h1 className="text-center pt-10">Cursilho Masculino</h1>
+          <h1 className="text-center pt-10 font-roboto">
+            {env === 'MASC' ? 'Cursilho Masculino' : 'Cursilho Feminino'}
+          </h1>
           <Image
             alt="Vercel logo"
             src={logoCursilho}
@@ -107,7 +111,9 @@ export default function Success() {
               <input
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 type="email"
-                placeholder="fulaninho@gmail.com"
+                placeholder={
+                  env === 'MASC' ? 'fulaninho@gmail.com' : 'fulaninha@gmail.com'
+                }
                 onChange={e => setEmail(e.target.value)}
                 value={email}
                 required
@@ -116,7 +122,13 @@ export default function Success() {
           </div>
           <div className="flex flex-row justify-center">
             <button
-              className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-4 rounded-full"
+              className={classNames(
+                'text-white font-bold py-2 px-4 rounded-full text-sm',
+                {
+                  'bg-blue-500 hover:bg-blue-700': env === 'MASC',
+                  'bg-pink-500 hover:bg-pink-700': env === 'FEM',
+                },
+              )}
               type="submit"
               disabled={isLoading}
             >
@@ -150,7 +162,7 @@ export default function Success() {
 
       <div className="flex flex-col mt-4 justify-center gap-4 text-center mb-4 items-center">
         <Link
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full text-center"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full text-center text-sm"
           href="/"
         >
           Voltar para a página inicial

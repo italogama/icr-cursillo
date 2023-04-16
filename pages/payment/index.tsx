@@ -9,7 +9,7 @@ import classNames from 'classnames';
 export default function Success() {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const env = process.env.CURSILHO_ENV;
+  const env = process.env.NEXT_PUBLIC_CURSILHO_ENV;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

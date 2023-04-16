@@ -9,7 +9,7 @@ export default function Equipe() {
   const [name, setName] = useState('');
   const [paymentType, setPaymentType] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-  const env = process.env.CURSILHO_ENV;
+  const env = process.env.NEXT_PUBLIC_CURSILHO_ENV;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

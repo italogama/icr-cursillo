@@ -46,8 +46,8 @@ function Subscribe() {
 
   const [isLoading, setIsLoading] = useState(false);
   const env = process.env.CURSILHO_ENV;
-  const init = process.env.CURSILHO_INIT;
-  const end = process.env.CURSILHO_END;
+  const init = process.env.NEXT_PUBLIC_CURSILHO_INIT;
+  const end = process.env.NEXT_PUBLIC_CURSILHO_END;
 
   const resetFields = () => {
     setFullName('');
@@ -770,7 +770,7 @@ function Subscribe() {
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold m-2">
               Eu, {fullName ? fullName : 'Seu nome aqui'} reafirmo todos os
               dados por mim citados acima, responsabilizando-me pela ida ao
-              Movimento Cursilhista nos dias: {init} a{end}, e procurar a
+              Movimento Cursilhista nos dias: {init} a {end}, e procurar a
               Secretaria do Cursilho a fim de confirmar minha presença,
               efetuando o pagamento da taxa no valor de R$300 reais no final
               deste cadastro, ou na entrega deste formulário preenchido 50% do

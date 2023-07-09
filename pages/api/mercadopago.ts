@@ -22,7 +22,7 @@ export default async function handler(
   let preference = {
     items: [
       {
-        title: 'Cursilho ICR - 07/09/2023 a 10/09/2023',
+        title: 'Cursilho ICR',
         description: '3° Cursilho de Cristandade da Igreja Cristã em Recife',
         unit_price: 370,
         quantity: 1,

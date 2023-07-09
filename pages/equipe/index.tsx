@@ -107,9 +107,9 @@ export default function Equipe() {
                 onChange={e => setPaymentType(Number(e.target.value))}
                 value={paymentType}
               >
-                <option value={1}>Taxa + Camisa R$: 310,00</option>
-                <option value={2}>Apenas Taxa R$: 270,00</option>
-                <option value={3}>Apenas Camisa R$: 40,00</option>
+                <option value={1}>Taxa + Camisa R$: 360,00</option>
+                <option value={2}>Apenas Taxa R$: 320,00</option>
+                <option value={3}>Apenas Camisa R$: 45,00</option>
               </select>
             </div>
           </div>

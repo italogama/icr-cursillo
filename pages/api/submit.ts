@@ -9,6 +9,7 @@ type SheetForm = {
   civilStatus: string;
   cpf: string;
   shirtSize: string;
+  prefRoom: string;
   street: string;
   streetNumber: string;
   neighborhood: string;
@@ -65,7 +66,7 @@ export default async function handler(
 
     const response = await sheet.spreadsheets.values.append({
       spreadsheetId: process.env.SPREADSHEET_ID,
-      range: 'A2:AD2',
+      range: 'A2:AF2',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: [
@@ -77,6 +78,7 @@ export default async function handler(
             body.civilStatus,
             body.cpf,
             body.shirtSize,
+            body.prefRoom,
             body.street,
             body.streetNumber,
             body.neighborhood,

@@ -28,7 +28,7 @@ export default async function handler(
             title: 'Cursilho ICR - EQUIPE - Taxa + Camisa',
             description:
               'Pagamento da Equipe do Cursilho de Cristandade da Igreja Cristã em Recife',
-            unit_price: 310,
+            unit_price: 360,
             quantity: 1,
           },
         ],
@@ -45,7 +45,7 @@ export default async function handler(
             title: 'Cursilho ICR - EQUIPE - Apenas Taxa',
             description:
               'Pagamento da Equipe do Cursilho de Cristandade da Igreja Cristã em Recife',
-            unit_price: 270,
+            unit_price: 320,
             quantity: 1,
           },
         ],
@@ -63,7 +63,7 @@ export default async function handler(
             title: 'Cursilho ICR - EQUIPE - Apenas Camisa',
             description:
               'Pagamento da Equipe do Cursilho de Cristandade da Igreja Cristã em Recife',
-            unit_price: 40,
+            unit_price: 45,
             quantity: 1,
           },
         ],

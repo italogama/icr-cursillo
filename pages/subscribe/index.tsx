@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { use, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Swal from 'sweetalert2';
 import logoCursilho from '../../public/images/logoCursilho.png';
@@ -43,6 +43,7 @@ function Subscribe() {
   const [guestPhone, setGuestPhone] = useState('');
   const [guestCursillo, setGuestCursillo] = useState('');
   const [payment, setPayment] = useState('Não');
+  const [prefRoom, setPrefRoom] = useState('');
 
   const [isLoading, setIsLoading] = useState(false);
   const env = process.env.NEXT_PUBLIC_CURSILHO_ENV;
@@ -79,6 +80,7 @@ function Subscribe() {
     setGuestName('');
     setGuestPhone('');
     setGuestCursillo('');
+    setPrefRoom('');
   };
 
   useEffect(() => {
@@ -116,6 +118,7 @@ function Subscribe() {
         civilStatus,
         cpf,
         shirtSize,
+        prefRoom,
         street,
         streetNumber,
         neighborhood,
@@ -169,7 +172,7 @@ function Subscribe() {
           text: 'Desejar ser redirecionado para realizar o pagamento? Se você cancelar, você deverá realizar o pagamento até 5 dias ANTES do cursilho.',
           icon: 'info',
           showCancelButton: true,
-          confirmButtonColor: '#d946ef',
+          confirmButtonColor: '#65a30d',
           cancelButtonColor: '#d33',
           confirmButtonText: 'Realizar pagamento',
           cancelButtonText: 'Cancelar',
@@ -450,6 +453,35 @@ function Subscribe() {
           </div>
         </div>
 
+        <div className="flex flex-row -mx-3 mb-2">
+          <div className="w-full px-3">
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+              Preferência Dormitório
+            </label>
+            <div className="relative">
+              <select
+                className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                onChange={e => setPrefRoom(e.target.value)}
+                required
+                value={prefRoom}
+              >
+                <option defaultValue=""></option>
+                <option>Quarto com Ventilador(a)</option>
+                <option>Quarto com Ar-condicionado</option>
+              </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg
+                  className="fill-current h-4 w-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="flex flex-row -mx-3">
           <div className="w-full px-3">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
@@ -572,7 +604,7 @@ function Subscribe() {
           </div>
         </div>
 
-        <p className="text-gray-900 font-bold text-center bg-white rounded-md border border-red-500">
+        <p className="text-gray-900 font-bold text-center bg-white rounded-md border">
           Indique o Nome e Telefone do cônjugue ou/e Parente ou/e amigo próximo
           <br></br> (2 opções de telefone)
         </p>
@@ -633,7 +665,7 @@ function Subscribe() {
           </div>
         </div>
 
-        <p className="text-gray-900 font-bold text-center bg-white rounded-md border border-red-500">
+        <p className="text-gray-900 font-bold text-center bg-white rounded-md border">
           SITUAÇÃO ALIMENTAR E DE SAÚDE
         </p>
 
@@ -772,7 +804,7 @@ function Subscribe() {
           )}
         </div>
 
-        <p className="text-gray-900 font-bold text-center bg-white rounded-md border border-red-500">
+        <p className="text-gray-900 font-bold text-center bg-white rounded-md border">
           ACEITE DOS TERMOS
         </p>
 
@@ -781,7 +813,9 @@ function Subscribe() {
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold m-2">
               Eu, {fullName ? fullName : 'Seu nome aqui'} reafirmo todos os
               dados por mim citados acima, responsabilizando-me pela ida ao
-              Movimento Cursilhista nos dias: {init} a {end}, e procurar a
+              Movimento Cursilhista nos dias:{' '}
+              <span className="text-red-500">{init}</span> a{' '}
+              <span className="text-red-500">{end}</span>, e procurar a
               Secretaria do Cursilho a fim de confirmar minha presença,
               efetuando o pagamento da taxa no valor de R$300 reais no final
               deste cadastro, ou na entrega deste formulário preenchido 50% do
@@ -808,7 +842,7 @@ function Subscribe() {
           </div>
         </div>
 
-        <div className="text-gray-900 font-bold text-center bg-white rounded-md border border-red-500">
+        <div className="text-gray-900 font-bold text-center bg-white rounded-md border ">
           <p>VOCÊ FOI CONVIDADO POR ALGUEM?</p>
           <p>CONTA PRA GENTE!</p>
         </div>
@@ -881,7 +915,7 @@ function Subscribe() {
               'text-white font-bold py-2 px-4 rounded-full text-sm',
               {
                 'bg-blue-500 hover:bg-blue-700': env === 'MASC',
-                'bg-pink-500 hover:bg-pink-700': env === 'FEM',
+                'bg-pink-600 hover:bg-pink-700': env === 'FEM',
               },
             )}
             type="submit"

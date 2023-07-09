@@ -162,7 +162,7 @@ export default function Success() {
 
       <div className="flex flex-col mt-4 justify-center gap-4 text-center mb-4 items-center">
         <Link
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full text-center text-sm"
+          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full text-center text-sm"
           href="/"
         >
           Voltar para a página inicial

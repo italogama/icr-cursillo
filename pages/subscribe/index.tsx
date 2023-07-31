@@ -50,6 +50,9 @@ function Subscribe() {
   const init = process.env.NEXT_PUBLIC_CURSILHO_INIT;
   const end = process.env.NEXT_PUBLIC_CURSILHO_END;
 
+  const pagFisico = process.env.NEXT_PUBLIC_CURSILHO_PAYMENT_FISIC;
+  const pagOnline = process.env.NEXT_PUBLIC_CURSILHO_PAYMENT_ONLINE;
+
   const resetFields = () => {
     setFullName('');
     setNickname('');
@@ -817,9 +820,10 @@ function Subscribe() {
               <span className="text-red-500">{init}</span> a{' '}
               <span className="text-red-500">{end}</span>, e procurar a
               Secretaria do Cursilho a fim de confirmar minha presença,
-              efetuando o pagamento da taxa no valor de R$300 reais no final
-              deste cadastro, ou na entrega deste formulário preenchido 50% do
-              valor e o restante em até 5(cinco) dias antes do Cursilho.
+              efetuando o pagamento da taxa no valor de R${pagFisico} reais (ou
+              R${pagOnline} no cartão online), ou na entrega deste formulário
+              preenchido 50% do valor e o restante em até 5(cinco) dias antes do
+              Cursilho.
             </label>
             <div className="flex flex-row gap-2 justify-end mb-4">
               <input
